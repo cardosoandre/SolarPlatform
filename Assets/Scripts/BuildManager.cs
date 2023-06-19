@@ -63,17 +63,17 @@ public class BuildManager : MonoBehaviour{
         cancelTip.SetActive(false);
         
         InitializeBuildItems();
-        SelectCategory(selectedCategory);
+        //SelectCategory(selectedCategory);
         
         // tutorial sequence:
         // 0 - Build a platform, then unlock energy buildings
         // 1 - Build energy building, then unlock towers
         // 2 - Build tower
-        foreach (BuildCategory category in buildCategories)
-        {
-            category.buttonOutline.gameObject.SetActive(false);
-        }
-        buildCategories[0].buttonOutline.gameObject.SetActive(true);
+        //foreach (BuildCategory category in buildCategories)
+        //{
+        //    category.buttonOutline.gameObject.SetActive(false);
+        //}
+        //buildCategories[0].buttonOutline.gameObject.SetActive(true);
     }
 
     private void InitializeBuildItems(){
@@ -176,14 +176,14 @@ public class BuildManager : MonoBehaviour{
         if (tutorialStep == 0)
         {
             tutorialStep++;
-            buildCategories[1].buttonOutline.gameObject.SetActive(true);
+            //buildCategories[1].buttonOutline.gameObject.SetActive(true);
             GameManager.instance.TutorialWindows[0].SetActive(false);
             GameManager.instance.TutorialWindows[1].SetActive(true);
         }
         else if (tutorialStep == 1)
         {
             tutorialStep++;
-            buildCategories[2].buttonOutline.gameObject.SetActive(true);
+            //buildCategories[2].buttonOutline.gameObject.SetActive(true);
             GameManager.instance.TutorialWindows[1].SetActive(false);
             GameManager.instance.TutorialWindows[2].SetActive(true);
         }
@@ -227,14 +227,15 @@ public class BuildManager : MonoBehaviour{
 
     public void SelectCategory(int category){
         selectedCategory = category;
-        
-        for(int i = 0; i < buildCategories.Length; i++){
+
+        for (int i = 0; i < buildCategories.Length; i++)
+        {
             buildCategories[i].buttonOutline.enabled = i == selectedCategory;
         }
 
-        for(int i = 0; i < buildItems.Length; i++){
-            buildItems[i].uiButton.SetActive(buildItems[i].category == selectedCategory);
-        }
+        //for (int i = 0; i < buildItems.Length; i++){
+        //    buildItems[i].uiButton.SetActive(buildItems[i].category == selectedCategory);
+        //}
     }
 
     public void PlaceBuildItem(int item){
