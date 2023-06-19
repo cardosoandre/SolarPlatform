@@ -101,6 +101,9 @@ public class BuildManager : MonoBehaviour{
             placeholder.SetActive(false);
 
             buildItems[i].placeholder = placeholder;
+
+            if(i != 0)
+                buildButtonController.GetComponent<Button>().interactable = false;
         }
     }
 
@@ -139,7 +142,7 @@ public class BuildManager : MonoBehaviour{
                         {
                             GameManager.instance.UpdateEnergy(-buildItems[currentlyPlacing].cost);
 
-                            TutorialSequence();
+                            TutorialSequence(!buildItems[currentlyPlacing].targetTags.Contains("Platform"));
 
                             if (buildItems[currentlyPlacing].targetTags.Contains("Platform"))
                             {
@@ -171,14 +174,19 @@ public class BuildManager : MonoBehaviour{
         }
     }
 
-    private void TutorialSequence()
+    private void TutorialSequence(bool platform)
     {
-        if (tutorialStep == 0)
+        if (tutorialStep == 0 && platform)
         {
             tutorialStep++;
             //buildCategories[1].buttonOutline.gameObject.SetActive(true);
             GameManager.instance.TutorialWindows[0].SetActive(false);
             GameManager.instance.TutorialWindows[1].SetActive(true);
+
+            buildBar.GetChild(1).GetComponent<Button>().interactable = false;
+            buildBar.GetChild(2).GetComponent<Button>().interactable = true;
+            buildBar.GetChild(3).GetComponent<Button>().interactable = true;
+
         }
         else if (tutorialStep == 1)
         {
@@ -186,13 +194,30 @@ public class BuildManager : MonoBehaviour{
             //buildCategories[2].buttonOutline.gameObject.SetActive(true);
             GameManager.instance.TutorialWindows[1].SetActive(false);
             GameManager.instance.TutorialWindows[2].SetActive(true);
+
+            buildBar.GetChild(1).GetComponent<Button>().interactable = true;
+            buildBar.GetChild(2).GetComponent<Button>().interactable = false;
+            buildBar.GetChild(3).GetComponent<Button>().interactable = false;
+            buildBar.GetChild(4).GetComponent<Button>().interactable = true;
+            buildBar.GetChild(5).GetComponent<Button>().interactable = true;
+            buildBar.GetChild(6).GetComponent<Button>().interactable = true;
+            buildBar.GetChild(7).GetComponent<Button>().interactable = true;
+
         }
-        else if (tutorialStep == 2)
+        else if (tutorialStep == 2 && !platform)
         {
             tutorialStep++;
             GameManager.instance.gameStartButton.SetActive(true);
             GameManager.instance.TutorialWindows[2].SetActive(false);
             GameManager.instance.TutorialWindows[3].SetActive(true);
+
+            for (int i = 0; i < buildBar.childCount; i++)
+            {
+                if (buildBar.GetChild(i).GetComponent<Button>() != null)
+                {
+                    buildBar.GetChild(i).GetComponent<Button>().interactable = true;
+                }
+            }
 
         }
     }

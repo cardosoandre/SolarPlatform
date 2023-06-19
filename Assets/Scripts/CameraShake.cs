@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraShake : MonoBehaviour
 {
@@ -32,11 +33,17 @@ public class CameraShake : MonoBehaviour
         }
     }
 
+    //public void Shake(float multiplier)
+    //{
+    //    orgPos = cam.position;
+    //    curShakeAmount = shakeAmount * multiplier;
+    //    curShakeDuration = shakeDuration * multiplier;
+    //    this.enabled = true;
+    //}
+
     public void Shake(float multiplier)
     {
-        orgPos = cam.position;
-        curShakeAmount = shakeAmount * multiplier;
-        curShakeDuration = shakeDuration * multiplier;
-        this.enabled = true;
+        transform.DOComplete();
+        transform.DOShakePosition(shakeDuration, shakeAmount * multiplier, 20, 90, false, true);
     }
 }

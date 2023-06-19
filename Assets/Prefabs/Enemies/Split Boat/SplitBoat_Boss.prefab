@@ -422,6 +422,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   healthBarPrefab: {fileID: 2263511553416997733, guid: cbec32017e5f76244b4788d7919cc883, type: 3}
+  smokePrefab: {fileID: 2139314568869164354, guid: 6088c6fd6171edd468fd1b9539745df0, type: 3}
+  shockPrefab: {fileID: 7002138978497163124, guid: a40bd553d76b4f34eb7e9a794a1a8019, type: 3}
+  renderer: {fileID: 1322519069112275662}
+  normalEmissionColor: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 1}
+  hitEmissionColor: {r: 1.8880861, g: 1.8880861, b: 1.8880861, a: 1}
   barOffset: {x: 0, y: 3, z: 0}
 --- !u!1 &6180732176996510885
 GameObject:

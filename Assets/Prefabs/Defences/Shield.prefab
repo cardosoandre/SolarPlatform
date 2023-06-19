@@ -77,6 +77,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   healthBarPrefab: {fileID: 2263511553416997733, guid: cbec32017e5f76244b4788d7919cc883, type: 3}
+  smokePrefab: {fileID: 2139314568869164354, guid: 6088c6fd6171edd468fd1b9539745df0, type: 3}
+  shockPrefab: {fileID: 7002138978497163124, guid: a40bd553d76b4f34eb7e9a794a1a8019, type: 3}
+  renderer: {fileID: 3366862795856354345}
+  normalEmissionColor: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 1}
+  hitEmissionColor: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 1}
   barOffset: {x: 0, y: 4, z: 0}
 --- !u!114 &6177490341701145180
 MonoBehaviour:
@@ -364,6 +369,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc694994a669e24dba6e8c41d5d5944, type: 3}
+--- !u!23 &3366862795856354345 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: ffc694994a669e24dba6e8c41d5d5944, type: 3}
+  m_PrefabInstance: {fileID: 4141317684402684077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4535779049051580230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffc694994a669e24dba6e8c41d5d5944, type: 3}

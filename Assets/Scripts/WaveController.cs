@@ -55,6 +55,7 @@ public class WaveController : MonoBehaviour
                 if (waveNum == waves.Count) //if true then end game
                 {
                     this.enabled = false;
+                    GameManager.instance.WinScreen();
                 }
                 else titleTxt.text = waves[waveNum].waveTitle;
 

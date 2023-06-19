@@ -59,7 +59,7 @@ public class Boat : Enemy
             else if(t > reloadTime)
             {
                 GameObject effect = Instantiate(exploEffect, barrel.position, exploEffect.transform.rotation);
-                effect.transform.localScale *= 0.7f;
+                effect.transform.localScale *= 0.4f;
 
                 Projectile proj = Instantiate(cannonBall, barrel.position, Random.rotation);
                 proj.Init((attackTarget.transform.position - transform.position).normalized, projectileSpeed);

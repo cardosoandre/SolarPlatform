@@ -35,19 +35,20 @@ public class Projectile : MonoBehaviour
         if(collision.transform.tag == "Build")
         {
             collision.transform.GetComponent<Health>().TakeDamage(dmg);
-            CollideWithTarget();
+            CollideWithTarget(.4f);
         }
         else if(collision.transform.tag == "Lighthouse")
         {
             collision.transform.GetComponent<LighthouseManager>().TakeDamage(dmgToLighthouse);
-            CollideWithTarget();
+            CollideWithTarget(1);
         }
     }
 
-    void CollideWithTarget()
+    void CollideWithTarget(float size)
     {
-        Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
-        CameraShake.instance.Shake(1);
+        GameObject effect = Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
+        effect.transform.localScale = new Vector3(size, size, size);
+        CameraShake.instance.Shake(size);
         Destroy(gameObject);
     }
 

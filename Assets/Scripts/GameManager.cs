@@ -17,12 +17,17 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private float labelEffect;
     [SerializeField] Text healthText;
     [SerializeField] GameObject inGameScreen;
+    [SerializeField] Slider lightHouseHealthBar;
     [SerializeField] GameObject loseScreen;
+    [SerializeField] GameObject winScreen;
 
     [SerializeField] Text FastForwardText;
 
     [HideInInspector] public bool isGameStarted = false;
     public GameObject gameStartButton;
+
+    private bool firstHealthWarning, secondHealthWarning;
+    public GameObject smokeEffectPrefab, shockEffectPrefab;
 
     private Vector3 labelSize;
 
@@ -33,6 +38,9 @@ public class GameManager : MonoBehaviour{
         currHealth = startingHealth;
         gameStartButton.SetActive(false);
         UpdateHealth(0);
+
+        lightHouseHealthBar.maxValue = currHealth;
+        lightHouseHealthBar.value = currHealth;
 
         foreach (GameObject window in TutorialWindows)
         {
@@ -62,13 +70,40 @@ public class GameManager : MonoBehaviour{
     public void UpdateHealth(int amount)
     {
         currHealth += amount;
+
+        if (smokeEffectPrefab != null && shockEffectPrefab != null)
+        {
+            float healthPercentage = currHealth / 100f;
+
+            if (healthPercentage < 0.5f && !firstHealthWarning)
+            {
+                firstHealthWarning = true;
+                GameObject smoke = Instantiate(smokeEffectPrefab, transform.position, transform.rotation, transform);
+                smokeEffectPrefab.SetActive(true);
+
+            }
+
+            if (healthPercentage < 0.3f && !secondHealthWarning)
+            {
+                secondHealthWarning = true;
+                shockEffectPrefab.SetActive(true);
+            }
+        }
+
         if (currHealth <= 0)
         {
             isLighthouseDestroyed = true;
             inGameScreen.SetActive(false);
             loseScreen.SetActive(true);
         }
+
         healthText.text = currHealth.ToString();
+        lightHouseHealthBar.DOValue(currHealth, .1f, false);
+    }
+
+    public void WinScreen()
+    {
+        winScreen.SetActive(true);
     }
 
     public void StartGame()
